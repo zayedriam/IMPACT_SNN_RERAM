@@ -1,6 +1,0 @@
-<testsuites name="results">
-  <testsuite name="all" package="all">
-    <property name="random_seed" value="1779151815" />
-    <testcase name="neuron_network_hex_test" classname="neuron_network_test_1IP" file="/home/impact/miniconda3/lib/python3.13/site-packages/cocotb/decorators.py" lineno="143" time="2352.4408662319183" sim_time_ns="2089087100.001" ratio_time="888050.8453958497" />
-  </testsuite>
-</testsuites>
