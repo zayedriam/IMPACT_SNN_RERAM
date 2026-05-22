@@ -41,59 +41,76 @@ module user_project_wrapper #(
     output [2:0] user_irq
 );
 
+    // -------------------------------------------------------------------------
+    // Tie off unused outputs - using direct constant assignment pattern
+    // from known-good tape-out wrapper. No (* keep *) attributes - let
+    // synthesis handle constant outputs naturally.
+    // -------------------------------------------------------------------------
 
-    // -----------------------------
-    // Instantiate your hard macro
-    // -----------------------------
+    // Logic Analyzer: not used, drive low
+    assign la_data_out = 128'b0;
 
+    // IRQs: not used, drive low
+    assign user_irq = 3'b0;
+
+    // io_oeb: all high (input mode / Hi-Z) except bit [23] which is driven
+    // low because that bit is the output for ScanOutCC
+    assign io_oeb[`MPRJ_IO_PADS-1:24] = {(`MPRJ_IO_PADS-24){1'b1}};
+    assign io_oeb[23]                 = 1'b0;
+    assign io_oeb[22:0]               = {23{1'b1}};
+
+    // io_out: drive low for all bits except bit [23] (ScanOutCC from mprj)
+    assign io_out[`MPRJ_IO_PADS-1:24] = {(`MPRJ_IO_PADS-24){1'b0}};
+    assign io_out[22:0]               = 23'b0;
+    // io_out[23] is driven by mprj.ScanOutCC below
+
+    // -------------------------------------------------------------------------
+    // Instantiate the neuromorphic core
+    // -------------------------------------------------------------------------
     nvm_neuron_core_256x64 mprj (
 `ifdef USE_POWER_PINS
-  .VDDC1 (vccd1),
-  .VDDC2 (vccd2),
-  .VDDA1 (vdda1),
-  .VDDA2 (vdda2),
-  .VSS  (vssd1),
+        .VDDC1 (vccd1),
+        .VDDC2 (vccd2),
+        .VDDA1 (vdda1),
+        .VDDA2 (vdda2),
+        .VSS   (vssd1),
 `endif
 
-  // Clocks / resets
-  .user_clk (wb_clk_i),
-  .user_rst (wb_rst_i),
-  .wb_clk_i (wb_clk_i),
-  .wb_rst_i (wb_rst_i),
+        // Clocks / resets
+        .user_clk (wb_clk_i),
+        .user_rst (wb_rst_i),
+        .wb_clk_i (wb_clk_i),
+        .wb_rst_i (wb_rst_i),
 
-  // Wishbone
-  .wbs_stb_i (wbs_stb_i),
-  .wbs_cyc_i (wbs_cyc_i),
-  .wbs_we_i  (wbs_we_i),
-  .wbs_sel_i (wbs_sel_i),
-  .wbs_dat_i (wbs_dat_i),
-  .wbs_adr_i (wbs_adr_i),
-  .wbs_dat_o (wbs_dat_o),
-  .wbs_ack_o (wbs_ack_o),
+        // Wishbone
+        .wbs_stb_i (wbs_stb_i),
+        .wbs_cyc_i (wbs_cyc_i),
+        .wbs_we_i  (wbs_we_i),
+        .wbs_sel_i (wbs_sel_i),
+        .wbs_dat_i (wbs_dat_i),
+        .wbs_adr_i (wbs_adr_i),
+        .wbs_dat_o (wbs_dat_o),
+        .wbs_ack_o (wbs_ack_o),
 
-  // Scan/Test
-  .ScanInCC  (io_in[35]),
-  .ScanInDL  (io_in[22]),
-  .ScanInDR  (io_in[21]),
-  .TM        (io_in[36]),
-  .ScanOutCC (io_out[23]),
+        // Scan/Test
+        .ScanInCC  (io_in[35]),
+        .ScanInDL  (io_in[22]),
+        .ScanInDR  (io_in[21]),
+        .TM        (io_in[36]),
+        .ScanOutCC (io_out[23]),
 
-  // Analog / bias pins (drive from analog_io[] wires you already built)
-  .Iref          (analog_io[27]),
-  .Vcc_read      (analog_io[26]),
-  .Vcomp         (analog_io[25]),
-  .Bias_comp2    (analog_io[24]),
-  .Vcc_wl_read   (analog_io[19]),
-  .Vcc_wl_set    (analog_io[23]),
-  .Vbias         (analog_io[22]),
-  .Vcc_wl_reset  (analog_io[21]),
-  .Vcc_set       (analog_io[20]),
-  .dc_bias       (analog_io[18])
-);
-
-
+        // Analog / bias pins
+        .Iref          (analog_io[27]),
+        .Vcc_read      (analog_io[26]),
+        .Vcomp         (analog_io[25]),
+        .Bias_comp2    (analog_io[24]),
+        .Vcc_wl_read   (analog_io[19]),
+        .Vcc_wl_set    (analog_io[23]),
+        .Vbias         (analog_io[22]),
+        .Vcc_wl_reset  (analog_io[21]),
+        .Vcc_set       (analog_io[20]),
+        .dc_bias       (analog_io[18])
+    );
 
 endmodule
 `default_nettype wire
-
-

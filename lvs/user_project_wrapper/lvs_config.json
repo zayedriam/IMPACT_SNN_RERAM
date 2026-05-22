@@ -7,7 +7,9 @@
 	"EXTRACT_ABSTRACT": [
 		"*__fill_*",
 		"*__fakediode_*",
-		"*__tapvpwrvgnd_*"
+		"*__tapvpwrvgnd_*",
+		"*Neuromorphic_X1_wb*"
+
 	],
 	"EXTRACT_CREATE_SUBCUT": [
 		""

@@ -1961,6 +1961,8 @@ Cell 'Neuromorphic_X1_wb' has (4) output pin(s) without antenna diffusion inform
 [GRT-0036] Pin analog_io[19] is outside die area.
 [GRT-0036] Pin analog_io[20] is outside die area.
 [GRT-0036] Pin analog_io[21] is outside die area.
+[GRT-0036] Pin analog_io[22] is outside die area.
+[GRT-0036] Pin analog_io[23] is outside die area.
 [GRT-0036] Pin analog_io[24] is outside die area.
 [GRT-0036] Pin analog_io[26] is outside die area.
 [GRT-0036] Pin analog_io[27] is outside die area.
@@ -2146,7 +2148,7 @@ Cell 'Neuromorphic_X1_wb' has (4) output pin(s) without antenna diffusion inform
 [GRT-0036] Pin user_irq[1] is outside die area.
 [GRT-0036] Pin wb_rst_i is outside die area.
 [GRT-0036] Pin wbs_ack_o is outside die area.
-[GRT-0036] Pin wbs_adr_i[12] is outside die area.
+[GRT-0036] Pin wbs_adr_i[13] is outside die area.
 [GRT-0036] Pin wbs_adr_i[14] is outside die area.
 [GRT-0036] Pin wbs_adr_i[15] is outside die area.
 [GRT-0036] Pin wbs_adr_i[2] is outside die area.
@@ -2154,6 +2156,7 @@ Cell 'Neuromorphic_X1_wb' has (4) output pin(s) without antenna diffusion inform
 [GRT-0036] Pin wbs_dat_i[0] is outside die area.
 [GRT-0036] Pin wbs_dat_i[10] is outside die area.
 [GRT-0036] Pin wbs_dat_i[11] is outside die area.
+[GRT-0036] Pin wbs_dat_i[12] is outside die area.
 [GRT-0036] Pin wbs_dat_i[13] is outside die area.
 [GRT-0036] Pin wbs_dat_i[14] is outside die area.
 [GRT-0036] Pin wbs_dat_i[15] is outside die area.
@@ -2168,6 +2171,7 @@ Cell 'Neuromorphic_X1_wb' has (4) output pin(s) without antenna diffusion inform
 [GRT-0036] Pin wbs_dat_i[25] is outside die area.
 [GRT-0036] Pin wbs_dat_i[26] is outside die area.
 [GRT-0036] Pin wbs_dat_i[27] is outside die area.
+[GRT-0036] Pin wbs_dat_i[28] is outside die area.
 [GRT-0036] Pin wbs_dat_i[29] is outside die area.
 [GRT-0036] Pin wbs_dat_i[2] is outside die area.
 [GRT-0036] Pin wbs_dat_i[30] is outside die area.
@@ -2182,12 +2186,6 @@ Cell 'Neuromorphic_X1_wb' has (4) output pin(s) without antenna diffusion inform
 [GRT-0036] Pin wbs_dat_o[0] is outside die area.
 [GRT-0036] Pin wbs_dat_o[10] is outside die area.
 [GRT-0036] Pin wbs_dat_o[11] is outside die area.
-[GRT-0036] Pin wbs_dat_o[12] is outside die area.
-[GRT-0036] Pin wbs_dat_o[13] is outside die area.
-[GRT-0036] Pin wbs_dat_o[14] is outside die area.
-[GRT-0036] Pin wbs_dat_o[15] is outside die area.
-[GRT-0036] Pin wbs_dat_o[16] is outside die area.
-[GRT-0036] Pin wbs_dat_o[18] is outside die area.
 [GRT-0036] Pin wbs_dat_o[1] is outside die area.
 [GRT-0036] Pin wbs_dat_o[2] is outside die area.
 [GRT-0036] Pin wbs_dat_o[3] is outside die area.
@@ -2197,7 +2195,7 @@ Cell 'Neuromorphic_X1_wb' has (4) output pin(s) without antenna diffusion inform
 [GRT-0036] Pin wbs_dat_o[7] is outside die area.
 [GRT-0036] Pin wbs_dat_o[8] is outside die area.
 [GRT-0036] Pin wbs_dat_o[9] is outside die area.
-[GRT-0036] Pin wbs_sel_i[1] is outside die area.
+[GRT-0036] Pin wbs_sel_i[0] is outside die area.
 [GRT-0036] Pin wbs_sel_i[2] is outside die area.
 [GRT-0036] Pin wbs_sel_i[3] is outside die area.
 [GRT-0036] Pin wbs_stb_i is outside die area.
@@ -2320,6 +2318,8 @@ Cell 'Neuromorphic_X1_wb' has (4) output pin(s) without antenna diffusion inform
 [GRT-0036] Pin io_out[19] is outside die area.
 [GRT-0036] Pin io_out[20] is outside die area.
 [GRT-0036] Pin io_out[2] is outside die area.
+[GRT-0036] Pin io_out[21] is outside die area.
+[GRT-0036] Pin io_out[22] is outside die area.
 [GRT-0036] message limit reached, this message will no longer print
 [GRT-0230] Congestion iterations cannot increase overflow, reached the maximum number of times the total overflow can be increased.
 [GRT-0115] Global routing finished with overflow.
@@ -2344,8 +2344,6 @@ Threshold for Threshold-surpassing long wires is not set. The checker will be sk
 Cell 'user_project_wrapper' has (19) inout pin(s) without anetnna gate information not antenna diffusion information. They might be disconnected.
 Cell 'user_project_wrapper' has (318) input pin(s) without antenna gate information. They might not be connected to a gate.
 Cell 'user_project_wrapper' has (206) output pin(s) without antenna diffusion information. They might not be driven.
-Hold violations found in the following corners:
-* max_ss_100C_1v60
 Max Slew violations found in the following corners:
 * max_ff_n40C_1v95
 * max_ss_100C_1v60
@@ -2360,7 +2358,9 @@ Max Cap violations found in the following corners:
 * max_ff_n40C_1v95
 * max_ss_100C_1v60
 * max_tt_025C_1v80
+* min_ff_n40C_1v95
 * min_ss_100C_1v60
 * min_tt_025C_1v80
+* nom_ff_n40C_1v95
 * nom_ss_100C_1v60
 * nom_tt_025C_1v80

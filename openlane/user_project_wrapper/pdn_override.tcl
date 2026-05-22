@@ -16,7 +16,7 @@ if {![info exists ::env(GND_NET)]} { set ::env(GND_NET) vssd1 }
 
 set secondary {}
 if {![catch {ord::get_db_block}]} {
-  foreach n {vdda1 vssa1 vccd2 vssd2} {
+  foreach n {vdda1 vdda2 vssa1 vssa2 vccd2 vssd2} {
     set db_net [[ord::get_db_block] findNet $n]
     if {$db_net ne "NULL"} { lappend secondary $n }
   }
@@ -45,7 +45,7 @@ add_pdn_stripe -grid core -layer met5 -width 8.0 -pitch 180.0 -offset 46.0 -star
 
 # 6) Macro grid
 
-define_pdn_grid -macro -default -name macro -starts_with POWER -halo {5.0 5.0} -voltage_domains {CORE}
+define_pdn_grid -macro -default -name macro -starts_with POWER -halo {10.0 10.0} -voltage_domains {CORE}
 
 # 7) Sequential layer connections
 
